@@ -5,3 +5,16 @@
 // 4. 결과 버튼 후 이미지를 보여 준다.
 // 5. 성공 했는지 실패 했는지 기록을 보여 준다.
 // 6. 확률을 표시한다.
+
+// 함수
+function shuffleArray(array) { //렌덤 함수
+    for (let i = array.length - 1; i > 0; i--) {
+        // 0에서 i 사이의 무작위 인덱스를 선택합니다.
+        const j = Math.floor(Math.random() * (i + 1));
+        // 선택된 인덱스의 요소와 i번째 요소를 교환합니다.
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+
+let array = [ 0, 1, 0];

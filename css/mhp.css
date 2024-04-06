@@ -33,9 +33,15 @@ li {
     border: 3px solid #000000;
     height: 350px;
     background-color: #ccc;
+    perspective: 800px;
 }
 img {
     height: 350px;
+}
+img:hover {
+    transition: all 1s;
+    transform-origin: left;
+    transform: rotateY(-20deg);
 }
 .recode {
     grid-column: 1/2;
@@ -44,4 +50,9 @@ img {
 #recodeTitle {
     border: 2px solid #ccc;
     text-align: center;
+}
+.butten {
+    grid-column-start: 5;
+    grid-row-start: 5;
+    margin: 10px;
 }
