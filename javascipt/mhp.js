@@ -7,7 +7,8 @@
 // 6. 확률을 표시한다.
 
 // 함수
-function shuffleArray(array) { //렌덤 함수
+// 렌덤 함수
+function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         // 0에서 i 사이의 무작위 인덱스를 선택합니다.
         const j = Math.floor(Math.random() * (i + 1));
@@ -17,4 +18,5 @@ function shuffleArray(array) { //렌덤 함수
       return array;
     }
 
-let array = [ 0, 1, 0];
+let answer = [ 0, 1, 0]; // 1 = car | 0 = goat
+
