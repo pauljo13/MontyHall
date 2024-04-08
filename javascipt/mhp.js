@@ -16,40 +16,57 @@ function shuffleArray(array) {
         [array[i], array[j]] = [array[j], array[i]];
       }
       return array;
+    };
+
+function resetBorders(exceptDoor) {
+  const doors = [door1, door2, door3];
+  doors.forEach(door => {
+    if (door !== exceptDoor) {
+      door.parentNode.style.border = "";
     }
-
-document.addEventListener('DOMContentLoaded',function() {
-  let answer = [ 0, 1, 0]; // 1 = car | 0 = goat
-  answer = shuffleArray(answer);
-
-  let doors = document.querySelectorAll(".door");
-  doors.forEach((door, index) => {
-    door.setAttribute("data-answer", answer[index]);
   });
+}
 
-  let door1 = document.querySelector('#door1');
-  console.log(door1.getAttribute('data-answer')); // '0'
-});
+let answer = [ 0, 1, 0]; // 1 = car | 0 = goat
+answer = shuffleArray(answer);
+
+let choice;
 
 let door1 = document.querySelector("#door1");
+door1.onclick = function(event) {
+  resetBorders(door1);
+  door1.parentNode.style.border =  "10px solid #fff200";
+  choice = 0;
+};
+
 let door2 = document.querySelector("#door2");
+door2.onclick = function(event) {
+  resetBorders(door2);
+  door2.parentNode.style.border =  "10px solid #fff200";
+  choice = 1;
+};
+
 let door3 = document.querySelector("#door3");
+door3.onclick = function(event) {
+  resetBorders(door3);
+  door3.parentNode.style.border =  "10px solid #fff200";
+  choice = 2;
+};
 
-document.addEventListener('DOMContentLoaded', () => {
-  door1.onclick = function() {
-      alert(door1.getAttribute("data-answer"));
-  };
-
-  door2.onclick = function() {
-      alert(door2.getAttribute("data-answer"));
-  };
-  
-  door3.onclick = function() {
-      alert(door3.getAttribute("data-answer"));
-  };
-});
+var decision = document.querySelector("#decision");
+decision.onclick = function(event) {
+  let anther = [0, 1, 2];
+  anther = anther.filter(number => number !== choice);
+  anther = shuffleArray(anther);
+  for (let i = 0; i < 2; i++) {
+    if (answer[anther[i]] !== 1) {
+      alert(anther[i]);
+      break;
+    }
+  }
+};
 
 var reStart = document.querySelector("#reStart");
 reStart.onclick = function(event) {
   answer = shuffleArray(answer);
-}
+};

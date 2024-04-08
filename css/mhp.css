@@ -37,6 +37,7 @@ li {
     height: 350px;
     background-color: #ccc;
     perspective: 800px;
+    transition: background-color 1s ease-in-out;
 }
 img {
     height: 350px;
@@ -46,14 +47,14 @@ img:hover {
     transform-origin: left;
     transform: rotateY(-20deg);
 }
-.recode {
+/* .recode {
     grid-column: 1/2;
     grid-row-start: 5;
 }
 #recodeTitle {
     border: 2px solid #ccc;
     text-align: center;
-}
+} */
 .butten {
     grid-column-start: 4;
     grid-row-start: 5;
