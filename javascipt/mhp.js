@@ -18,5 +18,38 @@ function shuffleArray(array) {
       return array;
     }
 
-let answer = [ 0, 1, 0]; // 1 = car | 0 = goat
+document.addEventListener('DOMContentLoaded',function() {
+  let answer = [ 0, 1, 0]; // 1 = car | 0 = goat
+  answer = shuffleArray(answer);
 
+  let doors = document.querySelectorAll(".door");
+  doors.forEach((door, index) => {
+    door.setAttribute("data-answer", answer[index]);
+  });
+
+  let door1 = document.querySelector('#door1');
+  console.log(door1.getAttribute('data-answer')); // '0'
+});
+
+let door1 = document.querySelector("#door1");
+let door2 = document.querySelector("#door2");
+let door3 = document.querySelector("#door3");
+
+document.addEventListener('DOMContentLoaded', () => {
+  door1.onclick = function() {
+      alert(door1.getAttribute("data-answer"));
+  };
+
+  door2.onclick = function() {
+      alert(door2.getAttribute("data-answer"));
+  };
+  
+  door3.onclick = function() {
+      alert(door3.getAttribute("data-answer"));
+  };
+});
+
+var reStart = document.querySelector("#reStart");
+reStart.onclick = function(event) {
+  answer = shuffleArray(answer);
+}
