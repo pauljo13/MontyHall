@@ -56,15 +56,48 @@ door3.onclick = function(event) {
 var decision = document.querySelector("#decision");
 decision.onclick = function(event) {
   let anther = [0, 1, 2];
+  const doors = [door1, door2, door3];
   anther = anther.filter(number => number !== choice);
   anther = shuffleArray(anther);
   for (let i = 0; i < 2; i++) {
     if (answer[anther[i]] !== 1) {
-      alert(anther[i]);
+      doors[i].parentNode.style.border = "white";
+      doors[i].src = "/image/goat.png";
+      decision.innerHTML = "최종 결정";
       break;
-    }
-  }
+    };
+  };
 };
+
+var clickCount = 0;
+decision.addEventListener("click", function() {
+
+  clickCount++;
+
+  if (clickCount == 1) {
+    // 최종 결정을 하기 위한 것
+    decision.innerHTML = "최종 결정";
+
+    // 처음 선택할 때
+    let anther = [0, 1, 2];
+    const doors = [door1, door2, door3];
+    anther = anther.filter(number => number !== choice);
+    anther = shuffleArray(anther);
+
+    for (let i = 0; i < 2; i++) {
+      if (answer[anther[i]] !== 1) {
+        doors[i].parentNode.style.border = "white";
+        doors[i].src = "/image/goat.png";
+        break;
+      };
+    };
+  }
+  else if(clickCount == 2) {
+    alert("결과");
+    clickCount = 0;
+  }
+});
+
 
 var reStart = document.querySelector("#reStart");
 reStart.onclick = function(event) {
