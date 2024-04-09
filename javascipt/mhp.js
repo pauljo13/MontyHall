@@ -54,52 +54,46 @@ door3.onclick = function(event) {
 };
 
 var decision = document.querySelector("#decision");
-decision.onclick = function(event) {
-  let anther = [0, 1, 2];
-  const doors = [door1, door2, door3];
-  anther = anther.filter(number => number !== choice);
-  anther = shuffleArray(anther);
-  for (let i = 0; i < 2; i++) {
-    if (answer[anther[i]] !== 1) {
-      doors[i].parentNode.style.border = "white";
-      doors[i].src = "/image/goat.png";
-      decision.innerHTML = "최종 결정";
-      break;
-    };
-  };
-};
-
+let anther = [0, 1, 2];
+anther = shuffleArray(anther);
+const doors = [door1, door2, door3];
 var clickCount = 0;
-decision.addEventListener("click", function() {
+var opened = false;
 
+decision.addEventListener("click", function() {
   clickCount++;
 
   if (clickCount == 1) {
-    // 최종 결정을 하기 위한 것
+    anther = anther.filter(number => number !== choice); // 선택하지 않은 문 필터링
     decision.innerHTML = "최종 결정";
 
-    // 처음 선택할 때
-    let anther = [0, 1, 2];
-    const doors = [door1, door2, door3];
-    anther = anther.filter(number => number !== choice);
-    anther = shuffleArray(anther);
-
-    for (let i = 0; i < 2; i++) {
-      if (answer[anther[i]] !== 1) {
-        doors[i].parentNode.style.border = "white";
-        doors[i].src = "/image/goat.png";
-        break;
-      };
-    };
-  }
-  else if(clickCount == 2) {
-    alert("결과");
+    // 염소가 있는 문을 열어 주기
+    anther.forEach(element => {
+      if (answer[element] !== 1 && !opened) {
+        doors[element].parentNode.style.border = "white";
+        doors[element].src = "/image/goat.png";
+        opened = true; // 한 번만 실행
+      }
+    });
+    anther = anther.filter(number => number !== element); // 이미 열린 문 제거
+  } else if (clickCount == 2) {
+    if (doors[choice].src.includes("goat.png")) {
+      // alert("이미 염소를 선택했습니다!");
+    } else {
+      // 선택 결과에 따라 이미지 설정
+      doors[anther[0]].src = "/image/goat.png";
+      doors[choice].src = "/image/car.png";
+      // if (choice == answer.indexOf(1)) {
+      //   alert("성공");
+      // } else {
+      //   alert("실패");
+      // }
+    }
     clickCount = 0;
   }
 });
 
 
-var reStart = document.querySelector("#reStart");
-reStart.onclick = function(event) {
-  answer = shuffleArray(answer);
-};
+document.querySelector("#reStart").addEventListener("click", function(){
+  location.reload();
+});
